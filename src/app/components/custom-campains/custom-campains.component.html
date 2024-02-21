@@ -1,0 +1,37 @@
+<div class="table-container" *ngIf="campains; else campainsEmpty">
+  <table>
+    <thead>
+      <tr>
+        <th>Kampanya ID</th>
+        <th>Başlık</th>
+        <th>Açıklama</th>
+        <th>Puan</th>
+        <th>Tarih</th>
+        <th>Arttır/Azalt</th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let campain of campains">
+        <td>{{ campain.id }}</td>
+        <td>{{ campain.title }}</td>
+        <td>{{ campain.description }}</td>
+        <td>{{ campain.point }}</td>
+        <td>{{ campain.date }}</td>
+        <td  class="increase-decrease">
+          <button (click)="updatePoint(campain.id, true)">
+            <img width="20" src="assets/img/plus.png" alt="" srcset="" />
+          </button>
+          <button (click)="updatePoint(campain.id, false)">
+            <img width="20" src="assets/img/minus.png" alt="" srcset="" />
+          </button>
+        </td>
+        <td><button (click)="showModal(campain)"><img  width="20" src="assets/img/updated.png" alt="" srcset=""></button></td>
+        <td><button (click)="deleteCampain(campain.id)"><img  width="20" src="assets/img/close.png" alt="" srcset=""></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #campainsEmpty>Henüz bir kampanya oluşturulmadı</ng-template>

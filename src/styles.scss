@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif !important;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+.full-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+}

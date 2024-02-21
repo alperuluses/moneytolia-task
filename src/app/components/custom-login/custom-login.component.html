@@ -1,0 +1,23 @@
+<div  class="full-container">
+    <div class="img-container">
+        <img src="assets/img/slider-0.png" alt="" srcset="">
+    </div>
+    <div class="login-right">
+        <div class="login-container">
+            <form [formGroup]="form">
+                <div  class="form-group">
+                    <label for="first-name">E-mail </label>
+                    <input id="email" type="text" formControlName="email" placeholder="Email">
+                </div>
+              
+                <div class="form-group">
+                    <label for="last-name">Şifre </label>
+                    <input id="password" type="text" formControlName="password" placeholder="Şifre">
+                </div>
+                <button type="button" (click)="loginHandle()">Giriş</button>
+    
+            </form>
+        </div>
+    </div>
+
+</div>
