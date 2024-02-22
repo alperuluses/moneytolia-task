@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
+import { Campain } from '../../types/types';
 
 @Component({
   selector: 'app-custom-campains',
@@ -10,24 +11,24 @@ import { ModalService } from '../../services/modal.service';
   styleUrl: './custom-campains.component.scss'
 })
 export class CustomCampainsComponent implements OnInit {
-  campains: any;
+  campains: Campain[] = [];
 
   getCampains() {
-    this.campains = localStorage.getItem("campains");
-    if (this.campains) {
-      this.campains = JSON.parse(this.campains);
+    let campains = localStorage.getItem("campains");
+    if (campains) {
+      this.campains = JSON.parse(campains);
     }
   }
 
-  updateCampains(campains: any) {
+  updateCampains(campains: Campain[]) {
     let updateCampains = JSON.stringify(campains)
     localStorage.setItem("campains", updateCampains)
   }
 
-  deleteCampain(id: number) {
+  deleteCampain(id: number | string) {
 
     if (this.campains) {
-      this.campains = this.campains.filter((campain: any) => {
+      this.campains = this.campains.filter((campain: Campain) => {
         return campain.id != id
       })
 
@@ -35,9 +36,9 @@ export class CustomCampainsComponent implements OnInit {
     }
   }
 
-  updatePoint(id: number, updateType: boolean) {
+  updatePoint(id: number | string, updateType: boolean) {
     if (this.campains) {
-      this.campains.map((campain: any) => {
+      this.campains.map((campain: Campain) => {
         if (campain.id == id) {
           updateType ? campain.point++ : campain.point--
           this.updateCampains(this.campains)
@@ -52,12 +53,11 @@ export class CustomCampainsComponent implements OnInit {
     this.getCampains()
   }
 
-  showModal(campain: any) {
+  showModal(campain: Campain) {
     this.modalService.setModalStatus(true)
     this.modalService.setModalCampainData(campain)
   }
 
   constructor(private modalService: ModalService) {
-
   }
 }
