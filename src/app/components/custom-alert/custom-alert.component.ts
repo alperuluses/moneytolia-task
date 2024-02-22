@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
+import { Alert } from '../../types/types';
 
 @Component({
   selector: 'app-custom-alert',
@@ -11,7 +12,7 @@ import { AlertService } from '../../services/alert.service';
 })
 export class CustomAlertComponent implements OnInit {
 
-  alert?: any;
+  alert?: Alert;
   timeout?: number;
   constructor(private alertService: AlertService) {
 

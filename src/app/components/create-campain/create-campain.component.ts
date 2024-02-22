@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
+import { AlertTypes, Campain } from '../../types/types';
 
 @Component({
   selector: 'app-create-campain',
@@ -18,10 +19,11 @@ export class CreateCampainComponent {
 
 
   setLastId() {
-    let lastCampainID: any = localStorage.getItem("lastCampainID")
-    let lastCampainIdNumber: any;
+    let lastCampainID: string | null = localStorage.getItem("lastCampainID")
+    let lastCampainIdNumber: number | string;
     if (lastCampainID) {
       lastCampainIdNumber = (+lastCampainID) + 1;
+      lastCampainIdNumber = lastCampainIdNumber.toString();
       localStorage.setItem("lastCampainID", lastCampainIdNumber)
       return lastCampainIdNumber
     }
@@ -32,7 +34,7 @@ export class CreateCampainComponent {
     }
   }
 
-  generateCampain(campain: any) {
+  generateCampain(campain: Campain) {
     let campains = localStorage.getItem("campains")
 
     if (campains) {
@@ -41,15 +43,15 @@ export class CreateCampainComponent {
       localStorage.setItem("campains", newCampains)
 
       this.alertService.setAlert({
-        type: 'success',
+        type: AlertTypes.succes,
         text: 'Kampanya Başarıyla Kaydedildi'
       })
     } else {
-      let initCampains: any = [campain];
+      let initCampains: Campain[] | string = [campain];
       initCampains = JSON.stringify(initCampains)
       localStorage.setItem("campains", initCampains)
       this.alertService.setAlert({
-        type: 'success',
+        type: AlertTypes.succes,
         text: 'Kampanya Başarıyla Kaydedildi'
       })
     }
@@ -58,7 +60,7 @@ export class CreateCampainComponent {
   createCampain() {
     if (this.createCampainForm.valid) {
 
-      let campain = {
+      let campain: Campain = {
         id: this.setLastId(),
         title: this.createCampainForm.get("title")?.value,
         description: this.createCampainForm.get("description")?.value,
