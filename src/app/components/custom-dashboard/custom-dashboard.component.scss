@@ -7,12 +7,22 @@
     background-color: #012c61;
   }
 
-  .header-container{
+  .header-container {
     width: 100%;
     background-color: orangered;
     height: 88px;
   }
   .content-side {
     width: 85%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .side-bar-container {
+    width: 0% !important;
+  }
+
+  .content-side {
+    width: 100% !important;
   }
 }

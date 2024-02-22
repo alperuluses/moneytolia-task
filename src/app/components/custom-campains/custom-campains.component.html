@@ -31,14 +31,18 @@
           </button>
         </td>
         <td>
-          <button (click)="showModal(campain)">
-            <img width="20" src="assets/img/updated.png" alt="" srcset="" />
-          </button>
+          <div class="update-campain-btn">
+            <button (click)="showModal(campain)">
+              <img width="20" src="assets/img/updated.png" alt="" srcset="" />
+            </button>
+          </div>
         </td>
         <td>
-          <button (click)="deleteCampain(campain.id)">
-            <img width="20" src="assets/img/close.png" alt="" srcset="" />
-          </button>
+          <div class="delete-btn">
+            <button (click)="deleteCampain(campain.id)">
+              <img width="15" src="assets/img/close.png" alt="" srcset="" />
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
